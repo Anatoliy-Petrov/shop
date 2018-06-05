@@ -1,0 +1,27 @@
+.category-image-sm {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 0 10px 10px 0;
+}
+.category-image-lg {
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 0 15px 15px 0;
+}
+.product-image-lg {
+	width: 200px;
+    height: 200px;
+}
+
+.product {
+    height: 250px;
+}
+.product img {
+	height: 100px;
+	width: 100%;
+}
+.clear {
+	clear: both;
+}
