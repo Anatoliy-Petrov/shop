@@ -21,4 +21,29 @@ class Product extends Model
     {
     	return $this->hasMany(Image::class);
     }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'product_attribute')->withPivot('options_available');
+    }
+
+//    public function colors()
+//    {
+//        return $this->morphedByMany(Color::class, 'product_attribute');
+//    }
+//
+//    public function sizesFootwear()
+//    {
+//        return $this->morphedByMany(SizeFootwear::class, 'product_attribute');
+//    }
+//
+//    public function memories()
+//    {
+//        return $this->morphedByMany(Memory::class, 'product_attribute');
+//    }
+//
+//    public function sizesScreen()
+//    {
+//        return $this->morphedByMany(SizeScreen::class, 'product_attribute');
+//    }
 }

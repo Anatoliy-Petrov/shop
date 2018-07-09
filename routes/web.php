@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
 	Route::put('/categories/{id}', 'Admin\CategoryController@update');
 	Route::delete('/categories/{id}', 'Admin\CategoryController@destroy');
 
+    Route::get('/categories/{id}/attributes', 'Admin\CategoryController@getAttributes');
+
 	// Products routes
 	Route::get('/product', 'Admin\ProductController@index');
 	Route::get('/product/edit/{id}', 'Admin\ProductController@edit');
@@ -39,6 +41,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
 	Route::post('/product', 'Admin\ProductController@store');
 	Route::put('/product/{id}', 'Admin\ProductController@update');
 	Route::delete('/product/{id}', 'Admin\ProductController@destroy');
+
+    // Attributes routes
+    Route::get('/attributes', 'Admin\AttributeController@index');
+    Route::get('/attributes/edit/{id}', 'Admin\AttributeController@edit');
+    Route::get('/attributes/create', 'Admin\AttributeController@create');
+    Route::post('/attributes', 'Admin\AttributeController@store');
+    Route::put('/attributes/{id}', 'Admin\AttributeController@update');
+    Route::delete('/attributes/{id}', 'Admin\AttributeController@destroy');
+
+    // Options routes
+    Route::get('/options', 'Admin\OptionController@index');
+    Route::get('/options/edit/{id}', 'Admin\OptionController@edit');
+    Route::get('/options/create', 'Admin\OptionController@create');
+    Route::post('/options', 'Admin\OptionController@store');
+    Route::put('/options/{id}', 'Admin\OptionController@update');
+    Route::delete('/options/{id}', 'Admin\OptionController@destroy');
 
 	// Images
 	Route::delete('/image/{id}', 'Admin\ImageController@destroy');

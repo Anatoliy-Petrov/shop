@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Attribute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
@@ -26,6 +27,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $this->validate(request(), [
 
             'name' => 'bail|required|unique:categories|max:100',
@@ -39,13 +41,21 @@ class ProductController extends Controller
         $imageNewName = time().rand(1,999).'.'.$image->getClientOriginalExtension();
         $image->move(public_path("img"), $imageNewName);
 
-        Product::create([
+        $product = Product::create([
             'name' => request('name'),
             'price' => request('price'),
             'description' => request('description'),
             'category_id' => request('category'),
             'image' => $imageNewName
             ]);
+        $attributes = array_keys($request->except(['name', 'price', 'description', 'category', 'image', '_token']));
+        foreach ($request->except(['name', 'price', 'description', 'category', 'image', '_token']) as $attribute => $options){
+            //$product->attributes()->attach($attribute);
+            $attr = Attribute::find($attribute);
+            $product->attributes()->save($attr, ['options_available' => json_encode($options)]);
+        }
+        //dd($attributes);
+        //$product->attributes()->attach($attributes);
         return redirect('/admin/product')
             ->with(['status' => 'товар создан', 'class' => 'success']);
     }

@@ -156,4 +156,8 @@ class CategoryController extends Controller
         return redirect('/admin/categories')
                 ->with(['status' => 'Категория удалена.', 'class' => 'success']);
     }
+    public function getAttributes($id)
+    {
+        return $attributes = Category::find($id)->attributes;
+    }
 }
